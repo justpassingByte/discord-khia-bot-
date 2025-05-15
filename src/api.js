@@ -73,7 +73,35 @@ const FALLBACK_RESPONSES = [
   "Nhìn bạn làm việc như xem phim tua chậm vậy, quá sức hấp dẫn.",
   "Đúng là phải làm quen với bạn mới thấy được 'cá tính' của bạn.",
   "Bạn như một cuốn từ điển vậy - cũng đầy chữ nhưng hiếm khi được mở ra.",
-  "Bạn có tài năng tự nhiên trong việc làm mọi thứ phức tạp hơn, đáng nể thật!"
+  "Bạn có tài năng tự nhiên trong việc làm mọi thứ phức tạp hơn, đáng nể thật!",
+  
+  // Thêm mới - Phong cách sống
+  "Cách bạn dùng điện thoại như thể nó sắp biến mất khỏi tay bạn trong 5 giây nữa vậy.",
+  "Giọng hát của bạn có khả năng đặc biệt - làm cho các loài động vật phải di cư sớm hơn dự kiến.",
+  "Phong cách nói chuyện của bạn giống như một bài văn dài không có dấu câu vậy.",
+  "Bạn nhảy như thể không ai đang nhìn - và mọi người đều ước rằng điều đó là sự thật.",
+  "Cách bạn cầm đũa khiến tổ tiên phải quay lại để dạy bạn lần nữa.",
+  
+  // Thêm mới - Công việc
+  "Bạn làm việc theo cách riêng của mình - còn được gọi là 'sai cách' trong hầu hết các trường hợp.",
+  "Email của bạn dài như một bộ tiểu thuyết, nhưng chẳng có ai đọc cả.",
+  "Cách bạn tổ chức file giống như một trò chơi trốn tìm mà ngay cả bạn cũng không thể thắng.",
+  "Thời gian bạn dành cho việc tìm cách trốn việc có thể được dùng để hoàn thành công việc từ lâu rồi.",
+  "Buổi họp do bạn điều hành giống như một bản nhạc giao hưởng - dài, buồn ngủ và không ai hiểu nổi.",
+  
+  // Thêm mới - Cuộc sống hàng ngày
+  "Cách bạn lái xe như thể luật giao thông chỉ là những gợi ý không bắt buộc vậy.",
+  "Khi bạn kể chuyện, tất cả mọi người đều được rèn luyện sự kiên nhẫn.",
+  "Khả năng giữ bí mật của bạn tương đương với một tờ báo được phát miễn phí.",
+  "Cách bạn đi shopping như thể tiền không phải vấn đề - có lẽ vì đó là tiền của người khác.",
+  "Khi bạn nấu ăn, cả gia đình lại có lý do mới để đánh giá cao dịch vụ giao hàng.",
+  
+  // Thêm mới - Mạng xã hội
+  "Cách bạn sống ảo trên mạng xã hội khiến mọi người tự hỏi bạn có tồn tại thật không.",
+  "Số lượng selfie bạn chụp trong ngày nhiều hơn số lần bạn nhìn vào gương - và điều đó nói lên nhiều điều.",
+  "Caption Instagram của bạn sâu sắc đến mức chạm đáy của sự nông cạn.",
+  "Bạn dùng filter nhiều đến mức ngay cả người thân cũng không nhận ra bạn ngoài đời thật.",
+  "Tin nhắn 'Seen' của bạn đã trở thành biểu tượng cho sự im lặng trong thời đại số."
 ];
 
 // Templates câu cà khịa thông minh có thể được cá nhân hóa
@@ -95,7 +123,42 @@ const SMART_TEMPLATES = [
   "{name} đúng là biết cách làm tôi cười - không phải vì hài hước, mà vì những quyết định kỳ lạ.",
   "Tôi ngưỡng mộ cách {name} có thể nói nhiều mà không truyền đạt được gì.",
   "Trí tưởng tượng của {name} thật phong phú, đặc biệt khi nghĩ ra lý do để không làm việc.",
-  "Tôi chưa bao giờ gặp ai như {name} - có thể biến mọi tình huống đơn giản thành phức tạp."
+  "Tôi chưa bao giờ gặp ai như {name} - có thể biến mọi tình huống đơn giản thành phức tạp.",
+  
+  // Thêm mới - Bối cảnh công việc & học tập
+  "CV của {name} như tiểu thuyết viễn tưởng vậy - đầy điều thú vị nhưng chẳng có gì là thật.",
+  "Bài thuyết trình của {name} là minh chứng hoàn hảo rằng ngủ gật vẫn là một kỹ năng có thể truyền lây.",
+  "Mỗi khi {name} nộp báo cáo, sếp lại phải thở dài và tự hỏi mình đã làm gì để đáng bị như vậy.",
+  "Đóng góp lớn nhất của {name} cho nhóm là ngày nghỉ phép của bạn ấy.",
+  "Kỹ năng giải quyết vấn đề của {name} vô song - không ai tạo ra nhiều vấn đề hơn để giải quyết cả.",
+  
+  // Mạng xã hội & công nghệ
+  "Story Instagram của {name} giống như bộ phim dài tập mà không ai muốn xem tiếp.",
+  "Tin nhắn của {name} giống như mã Morse - ngắn, khó hiểu và thuộc về thế kỷ trước.",
+  "Avatar của {name} là bức ảnh photoshop đẹp nhất mà tôi từng thấy - chẳng còn gì giống người thật.",
+  "Mỗi khi {name} đăng status, Facebook lại cân nhắc việc thêm nút 'không quan tâm nhưng lịch sự'.",
+  "Cách {name} dùng hashtag như cách người ta ném confetti - nhiều, lộn xộn và chẳng ai dọn dẹp.",
+  
+  // Ăn uống & phong cách sống
+  "Gu ẩm thực của {name} độc đáo tới mức đầu bếp nhìn thấy cũng phải xin nghỉ việc.",
+  "Phong cách thời trang của {name} là minh chứng cho thấy không phải ai cũng nên tự quyết định mặc gì.",
+  "Khả năng nấu ăn của {name} khiến dịch vụ giao đồ ăn phải cảm ơn vì có khách hàng trung thành.",
+  "Cách {name} ăn phở như thể đó là lần đầu tiên bạn ấy cầm đũa vậy.",
+  "Playlist nhạc của {name} là minh chứng rằng tai người và tai trâu đôi khi khó phân biệt.",
+  
+  // Hài hước về tính cách
+  "Tính kiên nhẫn của {name} thật đáng nể - chưa ai đợi lâu hơn để hoàn thành một việc đơn giản.",
+  "Sự chung thủy của {name} với những thói quen xấu thật đáng để các mối quan hệ học hỏi.",
+  "Mỗi khi {name} tự nhận mình là người hài hước, cả phòng lại im lặng để tưởng nhớ những trò đùa đã chết.",
+  "Khả năng trì hoãn của {name} nên được đưa vào sách kỷ lục Guinness.",
+  "{name} là người lạc quan nhất tôi từng gặp - vẫn tin rằng mình đúng dù toàn bộ sự thật chứng minh điều ngược lại.",
+  
+  // Đặc trưng văn hóa Việt Nam
+  "{name} đi họp như đi chơi - đến muộn, về sớm và chẳng đóng góp gì ngoài việc ăn bánh.",
+  "Lời hứa của {name} như mưa Sài Gòn vậy - không bao giờ biết khi nào sẽ đến và khi nào sẽ kết thúc.",
+  "Khả năng lái xe máy của {name} khiến cả Grabbike cũng phải né xa ba cây số.",
+  "Cách {name} mặc cả giống như đang tập kịch vậy - kịch tính, ồn ào và chẳng ai tin.",
+  "Khả năng uống bia của {name} tỷ lệ nghịch với khả năng chịu đựng hậu quả ngày hôm sau."
 ];
 
 // Templates cho trích dẫn giả
@@ -115,7 +178,35 @@ const QUOTE_TEMPLATES = [
   "Trong {topic}, thất bại không phải là một lựa chọn - đó là đặc quyền của tôi.",
   "Có những người tạo ra lịch sử trong {topic}, và có những người như tôi - chỉ xem TikTok về nó.",
   "Cuộc sống quá ngắn ngủi để học {topic} đúng cách - đó là lý do tôi luôn làm ẩu.",
-  "Người thành công trong {topic} là người thất bại nhiều nhất, nhưng thất bại một cách khôn ngoan - còn tôi thì không."
+  "Người thành công trong {topic} là người thất bại nhiều nhất, nhưng thất bại một cách khôn ngoan - còn tôi thì không.",
+  
+  // Thêm mới - Triết lý sống
+  "Tôi không biết gì về {topic} cả, nhưng điều đó chưa bao giờ ngăn tôi nói về nó như một chuyên gia.",
+  "Mọi người thường hỏi bí quyết của tôi về {topic}. Bí quyết đơn giản là: hãy làm như thể bạn biết những gì bạn đang làm.",
+  "Thời gian là thứ quý giá nhất trong {topic}. Đó là lý do tôi dành nhiều thời gian nhất để lãng phí nó.",
+  "Cách tốt nhất để học {topic} là dạy người khác - nhưng tốt hơn nữa là đừng dính dáng gì đến nó.",
+  "Để thành công trong {topic}, bạn cần ba thứ: sự may mắn, nhiều may mắn hơn, và khả năng đổ lỗi khi không may mắn.",
+  
+  // Thêm mới - Công nghệ & Internet
+  "Tôi dùng Internet để nghiên cứu về {topic}. Đó là cách tôi biến 5 phút tìm kiếm thành 3 giờ xem video mèo.",
+  "Mạng xã hội đã thay đổi cách chúng ta nhìn nhận {topic} - giờ đây chúng ta có thể sai lầm trước đông đảo công chúng.",
+  "Trong thế giới {topic}, có hai loại người: những người đổi mật khẩu thường xuyên và những người như tôi - vẫn dùng tên thú cưng từ năm 2008.",
+  "AI sẽ thay thế nhiều công việc liên quan đến {topic}, nhưng may mắn thay, sự lười biếng của tôi đã không thể bị thay thế.",
+  "Khi nói đến {topic} online, tôi là chuyên gia - trong việc copy và paste từ Wikipedia.",
+  
+  // Thêm mới - Công việc & sự nghiệp
+  "Sự nghiệp của tôi trong {topic} giống như một bộ phim hài - nhiều người xem, nhiều người cười, nhưng không ai thật sự hiểu.",
+  "Làm việc chăm chỉ trong {topic} rất quan trọng. Tôi luôn làm việc cực kỳ chăm chỉ... để tìm cách làm ít nhất có thể.",
+  "Tôi không gọi nó là 'trì hoãn {topic}', tôi gọi đó là 'đợi thời điểm hoàn hảo' - thường là vào phút cuối cùng.",
+  "Họp hành về {topic} là cách hiệu quả để biến việc có thể giải quyết trong một email thành một ngày làm việc đầy đủ.",
+  "Đừng chỉ mơ về thành công trong {topic} - hãy ngủ luôn đi, điều đó dễ chịu hơn nhiều.",
+  
+  // Thêm mới - Tình yêu & mối quan hệ
+  "Tình yêu cũng giống như {topic} - không ai thực sự hiểu nó, nhưng mọi người đều giả vờ như họ biết.",
+  "Bí quyết của một mối quan hệ thành công trong {topic} là tìm người không làm bạn phát điên... quá nhiều.",
+  "Tôi tiếp cận {topic} như cách tôi tiếp cận tình yêu - với nhiều hy vọng, ít kỹ năng, và kết quả thường là thất vọng.",
+  "Trong {topic} cũng như trong tình yêu, tôi luôn đúng - ngay cả khi tôi hoàn toàn sai.",
+  "Nếu {topic} là một mối quan hệ, thì tôi chắc chắn đang ở trong giai đoạn 'nên chia tay nhưng vẫn cố gắng'."
 ];
 
 /**
