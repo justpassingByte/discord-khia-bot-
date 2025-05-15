@@ -1,0 +1,24 @@
+{
+  "name": "discord-khia-bot",
+  "version": "1.0.0",
+  "description": "AI-powered teasing bot for Discord using HuggingFace API",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "huggingface",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.0"
+  }
+} 
