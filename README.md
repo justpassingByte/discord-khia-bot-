@@ -101,6 +101,24 @@ npm start
    - Thêm các biến môi trường (DISCORD_TOKEN, OWNER_ID, vv.)
 6. Deploy
 
+## Triển khai lên Replit
+
+1. Đăng ký tài khoản trên [Replit.com](https://replit.com)
+2. Tạo một Repl mới, chọn "Import from GitHub"
+3. Nhập URL của GitHub repository
+4. Sau khi import, chọn "Secrets" (khóa 🔒) trong sidebar
+5. Thêm các biến môi trường (đặt tên và giá trị tương ứng):
+   - `DISCORD_TOKEN`: Token của bot Discord
+   - `OWNER_ID`: ID Discord của chủ bot
+   - `HF_API_TOKEN`: Token HuggingFace (nếu sử dụng Premium AI)
+   - `PREMIUM_USERS`: Danh sách ID người dùng Premium (phân cách bởi dấu phẩy)
+   - `REPLIT_URL`: URL của Repl của bạn (sau khi đã deploy)
+6. Chọn "Run" để chạy bot
+7. Để giữ bot luôn hoạt động, sử dụng một dịch vụ như UptimeRobot:
+   - Đăng ký [UptimeRobot](https://uptimerobot.com/)
+   - Tạo HTTP monitor mới với URL là: `https://your-repl-name.username.repl.co/health`
+   - Thiết lập thời gian ping mỗi 5 phút
+
 ## Inviting the Bot to Your Server
 
 1. Go to Discord Developer Portal > Your Application

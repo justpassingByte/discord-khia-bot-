@@ -1,0 +1,21 @@
+run = "npm start"
+language = "nodejs"
+entrypoint = "src/index.js"
+
+[env]
+PORT = "3000"
+PATH = "/home/runner/${REPL_SLUG}/node_modules/.bin"
+
+[packager]
+language = "nodejs"
+
+[packager.features]
+packageSearch = true
+guessImports = true
+
+[nix]
+channel = "stable-22_11"
+
+[deployment]
+deploymentTarget = "cloudrun"
+ignorePorts = false 
