@@ -5,7 +5,7 @@ import axios from 'axios';
 // It will ping your Replit app to keep it from going to sleep
 
 // Replace with your actual Replit URL once deployed
-const REPLIT_URL = process.env.REPLIT_URL || 'https://your-replit-app-url.repl.co';
+const REPLIT_URL = process.env.REPLIT_URL || 'https://discord-khia-bot.repl.co';
 
 async function pingServer() {
   try {
@@ -19,5 +19,8 @@ async function pingServer() {
   }
 }
 
-// Execute ping
-pingServer(); 
+// Run the ping function
+pingServer();
+
+// If you want to run this on a schedule
+// setInterval(pingServer, 5 * 60 * 1000); // Ping every 5 minutes 

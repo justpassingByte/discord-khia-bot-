@@ -18,4 +18,8 @@ channel = "stable-22_11"
 
 [deployment]
 deploymentTarget = "cloudrun"
-ignorePorts = false 
+ignorePorts = false
+
+[server]
+host = true
+port = 3000 
