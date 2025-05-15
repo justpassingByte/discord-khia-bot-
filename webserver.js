@@ -1,4 +1,6 @@
-// keep_alive.js
+// webserver.js
+// Tách biệt web server từ bot để đảm bảo Replit tạo URL cố định
+
 import express from 'express';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
@@ -7,13 +9,23 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Read package.json to get version
-const packageJson = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'), 'utf8'));
-const { version } = packageJson;
+// Đọc package.json để lấy phiên bản
+try {
+  var packageJson = JSON.parse(fs.readFileSync(join(__dirname, 'package.json'), 'utf8'));
+  var version = packageJson.version;
+} catch (e) {
+  console.error('Không thể đọc package.json:', e);
+  var version = '1.0.0';
+}
 
+// Khởi tạo Express server
 const server = express();
 
-// Main route
+// Cấu hình server
+server.set('port', process.env.PORT || 3000);
+server.set('host', '0.0.0.0');
+
+// Route chính
 server.all('/', (req, res) => {
   const uptime = process.uptime();
   const uptimeFormatted = formatUptime(uptime);
@@ -22,6 +34,7 @@ server.all('/', (req, res) => {
     <html>
       <head>
         <title>Cà Khịa Bot - Status</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
           body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #2c2f33; color: #ffffff; }
           h1 { color: #7289da; }
@@ -38,6 +51,7 @@ server.all('/', (req, res) => {
           <div class="info">
             <p><strong>Version:</strong> ${version}</p>
             <p><strong>Uptime:</strong> ${uptimeFormatted}</p>
+            <p><strong>Server:</strong> Replit</p>
           </div>
         </div>
         <p>Bot is currently running. This page helps keep the bot alive on platforms like Replit.</p>
@@ -49,16 +63,23 @@ server.all('/', (req, res) => {
   `);
 });
 
-// Health check endpoint for monitoring services
+// Endpoint kiểm tra sức khỏe cho các dịch vụ giám sát
 server.get('/health', (req, res) => {
   res.status(200).json({
     status: 'ok',
     uptime: process.uptime(),
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    replit_id: process.env.REPL_ID || 'unknown',
+    replit_slug: process.env.REPL_SLUG || 'unknown'
   });
 });
 
-// Format uptime in a human-readable format
+// Endpoint ping đơn giản
+server.get('/ping', (req, res) => {
+  res.status(200).send('pong');
+});
+
+// Định dạng uptime dạng dễ đọc
 function formatUptime(uptime) {
   const days = Math.floor(uptime / 86400);
   const hours = Math.floor((uptime % 86400) / 3600);
@@ -74,17 +95,24 @@ function formatUptime(uptime) {
   return parts.join(', ');
 }
 
-function keepAlive() {
-  const PORT = process.env.PORT || 3000;
-  const HOST = '0.0.0.0';
+// Khởi động server
+function startServer() {
+  const PORT = server.get('port');
+  const HOST = server.get('host');
   
-  server.listen(PORT, HOST, () => {
-    console.log(`Server is running on ${HOST}:${PORT}`);
-    console.log('Visit / for status page');
-    console.log('Visit /health for health check endpoint');
-    console.log(`REPL_ID: ${process.env.REPL_ID || 'undefined'}`);
-    console.log(`REPL_SLUG: ${process.env.REPL_SLUG || 'undefined'}`);
+  return new Promise((resolve, reject) => {
+    const serverInstance = server.listen(PORT, HOST, () => {
+      console.log(`Web server is running on ${HOST}:${PORT}`);
+      console.log('Visit / for status page');
+      console.log('Visit /health for health check endpoint');
+      console.log('Visit /ping for simple ping endpoint');
+      resolve(serverInstance);
+    }).on('error', (err) => {
+      console.error('Failed to start web server:', err);
+      reject(err);
+    });
   });
 }
 
-export { keepAlive }; 
+// Export hàm khởi động server
+export { startServer }; 
