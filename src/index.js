@@ -1,4 +1,5 @@
 // src/index.js
+import { keepAlive } from '../keep_alive.js';
 import { config } from 'dotenv';
 import { 
   Client, 
@@ -799,6 +800,9 @@ client.once('ready', async () => {
 
 // Handle errors
 client.on('error', console.error);
+
+// Keep the bot alive (for Replit)
+keepAlive();
 
 // Login to Discord
 client.login(process.env.DISCORD_TOKEN); 
