@@ -1,5 +1,5 @@
 // webserver.js
-// Tách biệt web server từ bot để đảm bảo Replit tạo URL cố định
+// Tách biệt web server từ bot để đảm bảo Railway tạo URL cố định
 
 import express from 'express';
 import fs from 'fs';
@@ -21,7 +21,7 @@ try {
 // Khởi tạo Express server
 const server = express();
 
-// Cấu hình server
+// Cấu hình server - Railway tự động cung cấp PORT
 server.set('port', process.env.PORT || 3000);
 server.set('host', '0.0.0.0');
 
@@ -51,10 +51,10 @@ server.all('/', (req, res) => {
           <div class="info">
             <p><strong>Version:</strong> ${version}</p>
             <p><strong>Uptime:</strong> ${uptimeFormatted}</p>
-            <p><strong>Server:</strong> Replit</p>
+            <p><strong>Server:</strong> Railway</p>
           </div>
         </div>
-        <p>Bot is currently running. This page helps keep the bot alive on platforms like Replit.</p>
+        <p>Bot is currently running. This page helps keep the bot alive.</p>
         <div class="footer">
           <p>© ${new Date().getFullYear()} Cà Khịa Bot</p>
         </div>
@@ -69,8 +69,8 @@ server.get('/health', (req, res) => {
     status: 'ok',
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
-    replit_id: process.env.REPL_ID || 'unknown',
-    replit_slug: process.env.REPL_SLUG || 'unknown'
+    version: version,
+    platform: 'Railway'
   });
 });
 
